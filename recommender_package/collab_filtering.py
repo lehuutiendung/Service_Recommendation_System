@@ -45,7 +45,7 @@ class CollabFiltering(object):
             # Lấy giá trị trung bình rating của một user
             tmp = np.mean(ratings)
             if np.isnan(tmp):
-                tmp = 0  # để tránh mảng trống và nan value, default rating trung bình = 0 đối với isNAN
+                tmp = 0  #default rating trung bình = 0 đối với isNAN
             self.avg_rating[i] = tmp
             # chuẩn hóa
             self.Ybar_data[ids, 2] = (ratings.astype(float)- self.avg_rating[i])
@@ -76,8 +76,8 @@ class CollabFiltering(object):
         users_rated_i = (self.Y_data[ids, 0]).astype(np.int32)
         sim = self.Similar[u, users_rated_i]
         a = np.argsort(sim)[-self.k:]
-        nearest_s = sim[a]
-        r = self.Ybar[i, users_rated_i[a]]
+        nearest_s = sim[a]                      #Giá trị tương đồng
+        r = self.Ybar[i, users_rated_i[a]]      #Giá trị rating chuẩn hóa
         if normalized:
             # Cộng với 1e-8, để tránh chia cho 0
             return (r * nearest_s)[0] / (np.abs(nearest_s).sum() + 1e-8)
@@ -101,7 +101,7 @@ class CollabFiltering(object):
         for i in range(self.n_items):
             # i không nằm trong list item đã được đánh giá, i khác 0 (vì min ID = 1)
             if (i not in items_rated_by_u and i != 0):
-                rating = self.__pred(u, i)
+                rating = self.__pred(u, i, 0)
                 item['id'] = i
                 item['similar'] = rating
                 list_items.append(item.copy())
