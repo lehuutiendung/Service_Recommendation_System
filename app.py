@@ -37,17 +37,17 @@ def get_react():
         cf_result.fit()
 
         # Đánh giá
-        rate_test = np.asmatrix(data_matrix)
-        n_tests = rate_test.shape[0]
-        SE = 0 # squared error
-        for n in range(n_tests):
-            pred = cf_result.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
-            SE += (pred - rate_test[n, 2])**2 
+        # rate_test = np.asmatrix(data_matrix)
+        # n_tests = rate_test.shape[0]
+        # SE = 0 # squared error
+        # for n in range(n_tests):
+        #     pred = cf_result.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
+        #     SE += (pred - rate_test[n, 2])**2 
 
-        RMSE = np.sqrt(SE/n_tests)
-        print(SE)
-        print(n_tests)
-        print("User-user CF, RMSE =", RMSE)
+        # RMSE = np.sqrt(SE/n_tests)
+        # print(SE)
+        # print(n_tests)
+        # print("User-user CF, RMSE =", RMSE)
 
         #Lấy top x recommend
         top_x = 5
